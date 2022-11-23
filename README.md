@@ -1,9 +1,2 @@
 # Container image source for <course>
-Info here about where to find and run this image.
-
-# Template instructions (**DELETE THIS SECTION**)
-
-* Uncomment and add necessary libraries to Containerfile
-* mv Jenkinsfile.template to Jenkinsfile
-* Update image variable and add tests to Jenkinsfile
-
+This image can be obtained from DockerHub (ie: podman pull dockhub.io/ucsb/eemb-174:latest)
