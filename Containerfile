@@ -15,4 +15,4 @@ ENV CMDSTAN /opt/conda/bin/cmdstan
 
 USER $NB_USER
 
-CMD echo "CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE" > ~/.Renviron && "start-notebook.sh"
+CMD echo "CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE" > /home/joyvan/.Renviron && "start-notebook.sh"
