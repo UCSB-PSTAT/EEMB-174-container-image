@@ -13,6 +13,8 @@ RUN R -e "install.packages(c('cmdstanr'), repos = 'https://mc-stan.org/r-package
 
 ENV CMDSTAN /opt/conda/bin/cmdstan
 
+RUN /usr/bin/echo -e 'CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE' > /etc/skel/.Renviron
+
 USER $NB_USER
 
-CMD echo "CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE" > /home/jovyan/.Renviron && "start-notebook.sh"
+CMD cp /etc/skel/.Renviron ~/ && "start-notebook.sh"
