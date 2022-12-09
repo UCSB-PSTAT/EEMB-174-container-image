@@ -15,4 +15,6 @@ ENV CMDSTAN /opt/conda/bin/cmdstan
 
 USER $NB_USER
 
-CMD touch /home/jovyan/.Renviron ; echo -e 'CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE' > /home/jovyan/.Renviron ; "start-notebook.sh"
+RUN /usr/bin/echo -e 'CMDSTAN=/opt/conda/bin/cmdstan\nCMDSTANR_NO_VER_CHECK=TRUE' > /tmp/.Renviron
+
+CMD cp /tmp/.Renviron ~/ && "start-notebook.sh"
