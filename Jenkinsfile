@@ -35,7 +35,7 @@ pipeline {
                     }
                     post {
                         always {
-                            sh 'podman rm -fv $IMAGE_NAME'
+                            sh 'podman rm -ifv $IMAGE_NAME'
                         }
                     }
                 }
