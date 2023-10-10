@@ -38,7 +38,6 @@ pipeline {
                             sh 'podman rm -fv $IMAGE_NAME'
                         }
                     }
-
                 }
                 stage('Deploy') {
                     when { branch 'main' }
@@ -60,11 +59,7 @@ pipeline {
         failure {
             slackSend(channel: '#infrastructure-build', username: 'jenkins', color: 'danger', message: "Uh Oh! Build ${env.JOB_NAME} ${env.BUILD_NUMBER} had a failure! (<${env.BUILD_URL}|Find out why>).")
         }
-        post {
-            always {
-                sh 'podman rmi -i localhost/$IMAGE_NAME || true'
-            }
+        always {
+            sh 'podman rmi -i localhost/$IMAGE_NAME || true'
         }
-
-    }
 }
