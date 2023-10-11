@@ -22,6 +22,11 @@ pipeline {
                         echo "NODE_NAME = ${env.NODE_NAME}"
                         sh 'podman build -t localhost/$IMAGE_NAME --pull --force-rm --no-cache .'
                      }
+                    post {
+                        unsuccessful {
+                            sh 'podman rmi -i localhost/$IMAGE_NAME || true'
+                        }
+                    }
                 }
                 stage('Test') {
                     steps {
@@ -36,6 +41,9 @@ pipeline {
                     post {
                         always {
                             sh 'podman rm -ifv $IMAGE_NAME'
+                        }
+                        unsuccessful {
+                            sh 'podman rmi -i localhost/$IMAGE_NAME || true'
                         }
                     }
                 }
@@ -54,6 +62,11 @@ pipeline {
                         }
                     }
                 }                
+            }
+            post {
+                always {
+                    sh 'podman rmi -i localhost/$IMAGE_NAME || true'
+                }
             }
         }
     }
